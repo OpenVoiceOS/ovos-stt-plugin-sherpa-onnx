@@ -1,10 +1,10 @@
 # OpenVoiceOS STT Plugin - Sherpa ONNX
 
-An OpenVoiceOS Speech-to-Text plugin that uses [Sherpa-ONNX](https://github.com/k2-fsa/sherpa-onnx), the next-generation Kaldi-based speech recognition toolkit. This plugin runs completely offline and supports a wide variety of state-of-the-art architectures including Transducer, Whisper, Moonshine, Paraformer, and various CTC models.
+An OpenVoiceOS Speech-to-Text plugin that uses [Sherpa-ONNX](https://github.com/k2-fsa/sherpa-onnx), the Kaldi-based speech recognition toolkit from k2-fsa. The plugin runs fully offline and supports Transducer, Whisper, Moonshine, Paraformer, and several CTC model architectures.
 
 ## Description
 
-This plugin allows OpenVoiceOS to perform offline speech recognition using models compatible with the ONNX runtime. It automatically handles downloading models from the `k2-fsa` repository if a model ID is provided, or uses local files if preferred.
+This plugin lets OpenVoiceOS run offline speech recognition with models compatible with the ONNX runtime. If you give it a model ID, it downloads the model from the `k2-fsa` repository. If you give it local file paths, it uses those instead.
 
 ## Install
 
@@ -14,15 +14,15 @@ pip install ovos-stt-plugin-sherpa-onnx
 
 ## Models
 
-You can find available models in the [sherpa-onnx releases page](https://github.com/k2-fsa/sherpa-onnx/releases/tag/asr-models).
+Find available models on the [sherpa-onnx releases page](https://github.com/k2-fsa/sherpa-onnx/releases/tag/asr-models).
 
-When configuring the plugin, the `model` key typically corresponds to the name of the release archive (e.g., `sherpa-onnx-nemo-fast-conformer-transducer-en-de-es-fr-14288`).
+The `model` key usually matches the name of the release archive, for example `sherpa-onnx-nemo-fast-conformer-transducer-en-de-es-fr-14288`.
 
 ## Configuration
 
-Add the following to your `mycroft.conf`. The configuration keys change depending on the `model_type` you select.
+Add the following to your `mycroft.conf`. The configuration keys depend on the `model_type` you choose.
 
-### Basic Usage (Transducer)
+### Basic usage (Transducer)
 
 This is the standard configuration for Zipformer and Conformer transducer models.
 
@@ -40,10 +40,9 @@ This is the standard configuration for Zipformer and Conformer transducer models
     }
   }
 }
-
 ```
 
-### Supported Model Types & Examples
+### Supported model types and examples
 
 The plugin supports many architectures. Below are configuration examples for the most common ones.
 
@@ -57,7 +56,6 @@ The plugin supports many architectures. Below are configuration examples for the
   "decoder": "turbo-decoder.int8.onnx",
   "tokens": "turbo-tokens.txt"
 }
-
 ```
 
 #### Moonshine
@@ -72,7 +70,6 @@ The plugin supports many architectures. Below are configuration examples for the
   "preprocessor": "preprocess.onnx",
   "tokens": "tokens.txt"
 }
-
 ```
 
 #### Paraformer
@@ -84,7 +81,6 @@ The plugin supports many architectures. Below are configuration examples for the
   "model_file": "model.int8.onnx",
   "tokens": "tokens.txt"
 }
-
 ```
 
 #### Generic CTC (Zipformer, NeMo, WeNet, TeleSpeech, etc.)
@@ -98,7 +94,6 @@ For `model_type` values like `zipformer-ctc`, `nemo-ctc`, `wenet-ctc`, `telespee
   "model_file": "model.int8.onnx",
   "tokens": "tokens.txt"
 }
-
 ```
 
 #### Sense Voice
@@ -110,7 +105,6 @@ For `model_type` values like `zipformer-ctc`, `nemo-ctc`, `wenet-ctc`, `telespee
   "model_file": "model.int8.onnx",
   "tokens": "tokens.txt"
 }
-
 ```
 
 #### FireRed ASR
@@ -123,7 +117,6 @@ For `model_type` values like `zipformer-ctc`, `nemo-ctc`, `wenet-ctc`, `telespee
   "decoder": "decoder.int8.onnx",
   "tokens": "tokens.txt"
 }
-
 ```
 
 #### FunASR Nano
@@ -137,12 +130,11 @@ For `model_type` values like `zipformer-ctc`, `nemo-ctc`, `wenet-ctc`, `telespee
   "encoder_adaptor": "encoder_adaptor.int8.onnx",
   "tokenizer": "Qwen3-0.6B"
 }
-
 ```
 
-## Advanced: Using Local Models
+## Advanced: using local models
 
-If you do not provide the `model` key (which triggers the download), you can provide absolute paths to the files on your system directly in the specific keys (e.g., `encoder`, `decoder`, `model_file`).
+If you do not set the `model` key, the plugin does not download anything. Instead, give it absolute paths to the model files in the specific keys, such as `encoder`, `decoder`, or `model_file`.
 
 ```json
 {
@@ -157,5 +149,15 @@ If you do not provide the `model` key (which triggers the download), you can pro
     }
   }
 }
-
 ```
+
+## Related projects
+
+- [k2-fsa/sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx): the speech recognition toolkit this plugin wraps.
+- [TigreGotico/ovos-stt-plugin-onnx-asr](https://github.com/TigreGotico/ovos-stt-plugin-onnx-asr): a sibling offline OVOS STT plugin built on the `onnx-asr` runtime.
+- [TigreGotico/ovos-stt-plugin-fasterwhisper](https://github.com/TigreGotico/ovos-stt-plugin-fasterwhisper): a sibling offline OVOS STT plugin for Whisper models.
+- [OpenVoiceOS/ovos-plugin-manager](https://github.com/OpenVoiceOS/ovos-plugin-manager): discovers and loads this plugin through the `opm.stt` entry point.
+
+## License
+
+This project is licensed under the Apache License 2.0. See [LICENSE](LICENSE) for the full text.
