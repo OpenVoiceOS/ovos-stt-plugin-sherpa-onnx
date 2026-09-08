@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.2a2](https://github.com/TigreGotico/ovos-stt-plugin-sherpa-onnx/tree/0.0.2a2) (2026-09-08)
+
+[Full Changelog](https://github.com/TigreGotico/ovos-stt-plugin-sherpa-onnx/compare/0.0.2a1...0.0.2a2)
+
+**Merged pull requests:**
+
+- Configure Renovate [\#1](https://github.com/TigreGotico/ovos-stt-plugin-sherpa-onnx/pull/1) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [0.0.2a1](https://github.com/TigreGotico/ovos-stt-plugin-sherpa-onnx/tree/0.0.2a1) (2026-07-30)
 
 [Full Changelog](https://github.com/TigreGotico/ovos-stt-plugin-sherpa-onnx/compare/0.0.1...0.0.2a1)
