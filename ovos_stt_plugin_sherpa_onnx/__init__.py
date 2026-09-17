@@ -54,10 +54,14 @@ class SherpaOnnxSTT(STT):
             )
 
         elif model_type == "moonshine":
-            encoder = self.config.get("encoder", "encoder.onnx")
-            uncached_decoder = self.config.get("uncached_decoder", "uncached_decoder.onnx")
-            cached_decoder = self.config.get("cached_decoder", "cached_decoder.onnx")
-            preprocessor = self.config.get("preprocessor", "preprocessor.onnx")
+            # The released archives name these files after the operation, not the
+            # component, and carry the quantization in the name:
+            # encode.int8.onnx, uncached_decode.int8.onnx, cached_decode.int8.onnx,
+            # preprocess.onnx.
+            encoder = self.config.get("encoder", "encode.int8.onnx")
+            uncached_decoder = self.config.get("uncached_decoder", "uncached_decode.int8.onnx")
+            cached_decoder = self.config.get("cached_decoder", "cached_decode.int8.onnx")
+            preprocessor = self.config.get("preprocessor", "preprocess.onnx")
             tokens = self.config.get("tokens", "tokens.txt")
             if model_dir:  # model downloaded to cache
                 encoder = f"{model_dir}/{encoder}"
@@ -270,34 +274,6 @@ class SherpaOnnxSTT(STT):
 
             self.recognizer = so.OfflineRecognizer.from_medasr_ctc(
                 model=model,
-                tokens=tokens
-            )
-
-        elif model_type == "moonshine":
-            encoder = self.config.get("encoder", "encoder.onnx")
-            uncached_decoder = self.config.get("uncached_decoder", "uncached_decoder.onnx")
-            cached_decoder = self.config.get("cached_decoder", "cached_decoder.onnx")
-            preprocessor = self.config.get("preprocessor", "preprocessor.onnx")
-            tokens = self.config.get("tokens", "tokens.txt")
-            if model_dir:  # model downloaded to cache
-                encoder = f"{model_dir}/{encoder}"
-                uncached_decoder = f"{model_dir}/{uncached_decoder}"
-                cached_decoder = f"{model_dir}/{cached_decoder}"
-                tokens = f"{model_dir}/{tokens}"
-                preprocessor = f"{model_dir}/{preprocessor}"
-
-            assert os.path.isfile(preprocessor), "preprocessor model missing"
-            assert os.path.isfile(encoder), "encoder model missing"
-            assert os.path.isfile(uncached_decoder), "uncached_decoder model missing"
-            assert os.path.isfile(cached_decoder), "cached_decoder model missing"
-            assert os.path.isfile(tokens), "tokens missing"
-
-            self.recognizer = so.OfflineRecognizer.from_moonshine(
-                debug=True,
-                preprocessor=preprocessor,
-                encoder=encoder,
-                uncached_decoder=uncached_decoder,
-                cached_decoder=cached_decoder,
                 tokens=tokens
             )
 
