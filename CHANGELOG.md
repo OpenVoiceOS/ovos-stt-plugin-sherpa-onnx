@@ -1,20 +1,29 @@
 # Changelog
 
-## [0.0.2a2](https://github.com/TigreGotico/ovos-stt-plugin-sherpa-onnx/tree/0.0.2a2) (2026-09-08)
+## [0.0.3a1](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/tree/0.0.3a1) (2026-09-17)
 
-[Full Changelog](https://github.com/TigreGotico/ovos-stt-plugin-sherpa-onnx/compare/0.0.2a1...0.0.2a2)
-
-**Merged pull requests:**
-
-- Configure Renovate [\#1](https://github.com/TigreGotico/ovos-stt-plugin-sherpa-onnx/pull/1) ([renovate[bot]](https://github.com/apps/renovate))
-
-## [0.0.2a1](https://github.com/TigreGotico/ovos-stt-plugin-sherpa-onnx/tree/0.0.2a1) (2026-07-30)
-
-[Full Changelog](https://github.com/TigreGotico/ovos-stt-plugin-sherpa-onnx/compare/0.0.1...0.0.2a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/compare/0.0.2a2...0.0.3a1)
 
 **Merged pull requests:**
 
-- docs: rewrite README in Simplified Technical English [\#3](https://github.com/TigreGotico/ovos-stt-plugin-sherpa-onnx/pull/3) ([JarbasAl](https://github.com/JarbasAl))
+- fix: use the released moonshine file names [\#9](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/pull/9) ([JarbasAl](https://github.com/JarbasAl))
+- Remove moonshine model support double check [\#2](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/pull/2) ([denics](https://github.com/denics))
+
+## [0.0.2a2](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/tree/0.0.2a2) (2026-09-08)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/compare/0.0.2a1...0.0.2a2)
+
+**Merged pull requests:**
+
+- Configure Renovate [\#1](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/pull/1) ([renovate[bot]](https://github.com/apps/renovate))
+
+## [0.0.2a1](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/tree/0.0.2a1) (2026-07-30)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/compare/0.0.1...0.0.2a1)
+
+**Merged pull requests:**
+
+- docs: rewrite README in Simplified Technical English [\#3](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/pull/3) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
