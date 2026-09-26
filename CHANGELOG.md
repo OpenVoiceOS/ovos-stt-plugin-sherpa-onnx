@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.3a2](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/tree/0.0.3a2) (2026-09-26)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/compare/0.0.3a1...0.0.3a2)
+
+**Merged pull requests:**
+
+- Update actions/checkout action to v7 [\#6](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/pull/6) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [0.0.3a1](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/tree/0.0.3a1) (2026-09-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-stt-plugin-sherpa-onnx/compare/0.0.2a2...0.0.3a1)
