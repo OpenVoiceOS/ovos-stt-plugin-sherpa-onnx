@@ -151,6 +151,16 @@ If you do not set the `model` key, the plugin does not download anything. Instea
 }
 ```
 
+## Offline Qwen3-ASR
+
+Install the plugin with `pip install "ovos-stt-plugin-sherpa-onnx[hub]"` for Hugging Face downloads. One opt-in English model is the [Oruk Fourier 2B INT8 export](https://huggingface.co/oruk/oruk-fourier-2b). Under `stt.ovos-stt-plugin-sherpa-onnx`, set:
+
+```json
+{"model_type": "qwen3-asr", "model": "oruk/oruk-fourier-2b", "num_threads": 4}
+```
+
+The first use downloads the pinned 2.41 GB ONNX pack. After that, set `HF_HUB_OFFLINE=1` to use the cache without network access. For another local Qwen3-ASR export, use `model_dir` instead of `model` to select the directory with its frontend, encoder, decoder and tokenizer. Oruk's English-only weights are CC BY-NC 4.0; hosted/API serving and commercial use require separate permission.
+
 ## Related projects
 
 - [k2-fsa/sherpa-onnx](https://github.com/k2-fsa/sherpa-onnx): the speech recognition toolkit this plugin wraps.

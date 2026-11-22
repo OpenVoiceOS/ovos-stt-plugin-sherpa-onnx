@@ -22,7 +22,22 @@ class SherpaOnnxSTT(STT):
         provider = self.config.get("provider", "cpu")
         model_type = self.config.get("model_type", "transducer")
         model_id = self.config.get("model")
-        if model_id:
+        if model_type == "qwen3-asr" and model_id == "oruk/oruk-fourier-2b":
+            from huggingface_hub import snapshot_download
+            # ORT requires external tensor files inside the graphs’ directory.
+            # Materialize the snapshot instead of loading Hub cache symlinks.
+            revision = "3fda023e157ce7986f137f76fcf326ed6e08fa73"
+            directory = os.path.join(XDG_CACHE_HOME, "sherpa-onnx", "oruk-fourier-2b", revision)
+            snapshot = snapshot_download(
+                local_dir=directory,
+                repo_id=model_id,
+                revision=revision,
+                allow_patterns=["onnx/sherpa-int8/*"],
+            )
+            model_dir = os.path.join(snapshot, "onnx", "sherpa-int8")
+        elif model_type == "qwen3-asr" and self.config.get("model_dir"):
+            model_dir = self.config["model_dir"]
+        elif model_id:
             model_dir = self.download(model_id)
         else:
             model_dir = None  # user is passing explicit paths to model files
@@ -290,6 +305,17 @@ class SherpaOnnxSTT(STT):
             self.recognizer = so.OfflineRecognizer.from_sense_voice(
                 model=model,
                 tokens=tokens
+            )
+
+        elif model_type == "qwen3-asr":
+            root = model_dir or "."
+            self.recognizer = so.OfflineRecognizer.from_qwen3_asr(
+                conv_frontend=os.path.join(root, self.config.get("conv_frontend", "conv_frontend.onnx")),
+                encoder=os.path.join(root, self.config.get("encoder", "encoder.int8.onnx")),
+                decoder=os.path.join(root, self.config.get("decoder", "decoder.int8.onnx")),
+                tokenizer=os.path.join(root, self.config.get("tokenizer", "tokenizer")),
+                provider=provider,
+                num_threads=self.config.get("num_threads", 2),
             )
 
         elif model_type == "funasr-nano":
