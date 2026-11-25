@@ -32,7 +32,7 @@ class SherpaOnnxSTT(STT):
                 local_dir=directory,
                 repo_id=model_id,
                 revision=revision,
-                allow_patterns=["onnx/sherpa-int8/*"],
+                allow_patterns=["config.json", "onnx/sherpa-int8/*"],
             )
             model_dir = os.path.join(snapshot, "onnx", "sherpa-int8")
         elif model_type == "qwen3-asr" and self.config.get("model_dir"):
